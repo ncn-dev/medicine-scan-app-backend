@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "subtle-bus-443807-m7",
+  "private_key_id": "320c0a0fc5875d9c5350756bb1e5d1143de7a328",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCj1jDrC5gPJpf7\n02wbwOBJ0LUeqPHukigLCePrNgbamaKTvPoZCwQ0L+c7kiUXC5YNSIK9GQWmgILS\nZ0lvOJczppXnMYGJ4man68V9P3O84+ScrlHHGxVrT318IEePfMQfNRXYJAnIUZ9i\nkrXfuaxjvG0iR/lP30jgDwjrOEt30prXys6KAtMNenP83WCLgu1ncVslUD7R/9YN\ny7Q9NGFP/NlJpiq/me+8uDy7ejBiLKVa55x4KpOSPedzx0yS0dFoz9kD2AqmLTHR\nDgZUL3EF63elocyHa+Kvacocw1YZDgTy1Wm7Cf1KO6RoBzGwECh6Pf6IfVHWJ+dM\nIGQdIn2ZAgMBAAECggEAFrfmc/aum43kI1UE4lr+KZ4u5Kp+qcX17C9EkzgcU9xb\n++qHhPN5yMF1FKtGSLTK64VI2RngJl90RI1yqbaKLkJaT63AuF2pkygRbDW2lynE\nE1SPcxw2qHkO/dL9Y/s5YtkZ8gJv937CADQ3KL0hbM8TFF7bRmUVljmKKLvXUy0A\ncN8Lmu/rgWEo1zpQfHmH5Pw0bu5RlPgGYp1mCRcp2+rQHUwv7Sv1ib0LSUEPKzHH\nMOifL32cItmPwrsAhYWmKeDmgQRHSrvmZbPuA39Rqu8shVlnF0ZEmJgY9bGriyK5\njXngVzfhRZ4jXcajDoMpcpPAlKAUa1xuzB/JpuX7xQKBgQDaZdxwZczB4tD5Gx4R\nYsIp3tAc94ObWlN9L6tgNzVBksI/DugxJHi60KDdivhtqoi3jBJPfWEyppJQftDY\nIwAOx2wpP39BJwZ4U0vQEFDXxmfPCnUYj60lhZIxjjTHZOhujUOBc92DBRTXrYoP\ngpstlB/GXGYHLh4SzFwPVLsXbwKBgQDAC3tTnaDKeF1NT4C5MnsF7OTGAtQIZuxS\nG41uZ6zg1UudxDGsKAodjxq2x9E3ZmFyN0sC46Vg3r1FzNYi/ed/ZHcVwRg419gN\nI6lfvPj63AzhgRnHc6VG3zWmRawvhcff4JrJO2IP4GnOrLREWl9kwCE6qzHFLJ7F\nIXcdLxp3dwKBgQCifHx4Z1Tiv5TIcSN6veZFbo+ZrZEN6TMKhYfUit6ljcHVVorr\n3P2xx/yXN4jDVshm/uC0oUzKeWGMX/2TgN7PIBHZ0nMkDxviM97IywrKrsOXJ2md\nP3AL5YeyNOIRo4LGlXUu//xDOWmbWXLJPVukmnrVgvMpzmbzh3XKtjiIIwKBgQCQ\nhJNsGwSzGNztntR5iXl2vgxyzhINuJZCO6W03aQFFb3vnYLb0M277MLnpXrVu9+8\n+csjA3iiazv32OuULYoWHd5XqpW1wQg+6wU8nJKpBQtUb7iclXRc3wAafffTU1NU\nMEuK/3sOA4zcEK8fePqscMEQy1+Kx8c7BbIDbjz2hQKBgQCRX7mWx0Wxn0KTrJLw\n9uH+plLjMpI2P29/U0rat7EctRFg8xAIz8q5BjGqw4d5nOuUo9sRRozT1uFk7fGg\nSSOqyP/iL61Q06m6GfhoKKlnDADcCT/yc0j7CUs11Q0hleuJf6UxvqTXkcJupThA\nkYgJJF6Yr6veOSeEj7Z78NNsaQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "medicine-scan@subtle-bus-443807-m7.iam.gserviceaccount.com",
+  "client_id": "109981518096456055867",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/medicine-scan%40subtle-bus-443807-m7.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
