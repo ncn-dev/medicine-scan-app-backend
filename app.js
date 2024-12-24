@@ -72,7 +72,7 @@ app.post('/api/register',formUpload.none(),async(req,res) => {
     const result = await pool.query("INSERT INTO users(identitycard,password,fullname,dateofbirth) VALUES($1,$2,$3,$4) RETURNING *",
     [identitynumber,password,fullname,dateofbirth]
     );
-    res.json({status:true});
+    res.json({status: true});
     console.log(result.rows[0]);
   }catch(error){
     console.error('Error:',error);
