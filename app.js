@@ -20,7 +20,7 @@ const client = new vision.ImageAnnotatorClient({
   keyFilename: "subtle-bus-443807-m7-320c0a0fc587.json",
 });
 
-const storsge = multer.diskStorage({
+const storage = multer.diskStorage({
   destination:(req,file,cb) => {
     cb(null,'uploads/');
   },
@@ -29,8 +29,8 @@ const storsge = multer.diskStorage({
   }
 });
 
-const upload = multer({storage:storsge});
-
+const upload = multer({storage:storage});
+const formUpload = multer();
 
 async function detectLabels(imagePath) {
   try {
@@ -66,6 +66,43 @@ app.post("/users",async(req,res) =>{
   res.json(result.rows[0]);
 
 });
+app.post('/api/register',formUpload.none(),async(req,res) => {
+  const{identitynumber,password,fullname,dateofbirth} = req.body;
+  try{
+    const result = await pool.query("INSERT INTO users(identitycard,password,fullname,dateofbirth) VALUES($1,$2,$3,$4) RETURNING *",
+    [identitynumber,password,fullname,dateofbirth]
+    );
+    res.json({status:true});
+    console.log(result.rows[0]);
+  }catch(error){
+    console.error('Error:',error);
+    res.json({status: false});
+  }
+  
+});
+app.post('/api/login', formUpload.none(), async (req,res) => {
+  const { identitynumber , password} = req.body; 
+  if (!identitynumber || !password) {
+    return res.status(400).json({ 
+      message: "Missing required parameters", 
+      required: ["identitynumber", "password"] 
+    });
+  }
+  console.log(identitynumber, password);
+  try {
+    const result = await pool.query(`SELECT * FROM users WHERE identitycard = '${identitynumber}'`);
+    if(result.rows[0].password == password){
+      res.json({status: true});
+    } else {
+      res.json({status: false});
+    }
+  } catch (error){
+    console.log('Not Found Identity Card Number');
+    res.json({status: false});
+  }
+  
+  
+});
 
 app.post('/api/upload',upload.single('image'),async(req,res) => {
   console.log(req.file);
@@ -76,7 +113,7 @@ app.post('/api/upload',upload.single('image'),async(req,res) => {
   const  textOcr = await detectLabels(`uploads/${filename}`);
  
   res.json({message:`${textOcr}`});
-})
+});
 
 app.get("/", (req, res) => {
   res.json({ name: "Natchanan Lordee" });
