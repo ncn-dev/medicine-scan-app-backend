@@ -53,11 +53,11 @@ async function hashPassword(password) {
   
 }
 
-async function hashidentityCard(identitynumber) {
+/*async function hashidentityCard(identitynumber) {
   const saltRounds = 10;
   const hashidentityCard = await bcrypt.hash(identitynumber,saltRounds);
   return hashidentityCard;
-}
+}*/
 
 app.use(express.json());
 
@@ -84,9 +84,8 @@ app.post('/api/register',formUpload.none(),async(req,res) => {
   const{identitynumber,password,fullname,dateofbirth} = req.body;
   try{
     const hashedPassword = await hashPassword(password);
-    const hashedidentityCard = await hashidentityCard(identitynumber);
     const result = await pool.query("INSERT INTO users(identitycard,password,fullname,dateofbirth) VALUES($1,$2,$3,$4) RETURNING *",
-    [hashedidentityCard,hashedPassword,fullname,dateofbirth]
+    [identitynumber,hashedPassword,fullname,dateofbirth]
     );
     res.json({status: true});
     console.log(result.rows[0]);
@@ -107,14 +106,9 @@ app.post('/api/login', formUpload.none(), async (req,res) => {
   try {
     const result = await pool.query(`SELECT * FROM users WHERE identitycard = '${identitynumber}'`);
     console.log(result.rows[0]);
-    // if(result.rows.length === 0){
-    //   res.status(404).json({status:false})
-    // }
     const user = result.rows[0];
-    // const isIdentityValid = await bcrypt.compare(identitynumber,user.identitynumber);
     const isPasswordValid = await bcrypt.compare(password,user.password);
     if(isPasswordValid){
-      console.log("KUY")
       res.json({status:true});
     }else{
       res.json({status:false})
