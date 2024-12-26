@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path')
 const vision = require("@google-cloud/vision");
 const {Pool} = require("pg");
+const bcrypt = require("bcrypt");
 const port = 3000;
 
 const pool = new Pool({
@@ -20,7 +21,7 @@ const client = new vision.ImageAnnotatorClient({
   keyFilename: "subtle-bus-443807-m7-320c0a0fc587.json",
 });
 
-const storsge = multer.diskStorage({
+const storage = multer.diskStorage({
   destination:(req,file,cb) => {
     cb(null,'uploads/');
   },
@@ -29,8 +30,8 @@ const storsge = multer.diskStorage({
   }
 });
 
-const upload = multer({storage:storsge});
-
+const upload = multer({storage:storage});
+const formUpload = multer();
 
 async function detectLabels(imagePath) {
   try {
@@ -44,6 +45,19 @@ async function detectLabels(imagePath) {
     console.error("Error detecting labels:", error);
   }
 }
+async function hashPassword(password) {
+  const saltRounds = 10;
+  const hashPassword = await bcrypt.hash(password,saltRounds);
+  return hashPassword;
+ 
+  
+}
+
+/*async function hashidentityCard(identitynumber) {
+  const saltRounds = 10;
+  const hashidentityCard = await bcrypt.hash(identitynumber,saltRounds);
+  return hashidentityCard;
+}*/
 
 app.use(express.json());
 
@@ -66,6 +80,47 @@ app.post("/users",async(req,res) =>{
   res.json(result.rows[0]);
 
 });
+app.post('/api/register',formUpload.none(),async(req,res) => {
+  const{identitynumber,password,fullname,dateofbirth} = req.body;
+  try{
+    const hashedPassword = await hashPassword(password);
+    const result = await pool.query("INSERT INTO users(identitycard,password,fullname,dateofbirth) VALUES($1,$2,$3,$4) RETURNING *",
+    [identitynumber,hashedPassword,fullname,dateofbirth]
+    );
+    res.json({status: true});
+    console.log(result.rows[0]);
+  }catch(error){
+    console.error('Error:',error);
+    res.json({status: false});
+  }
+  
+});
+app.post('/api/login', formUpload.none(), async (req,res) => {
+  const { identitynumber , password} = req.body; 
+  if (!identitynumber || !password) {
+    return res.status(400).json({ 
+      message: "Missing required parameters", 
+      required: ["identitynumber", "password"] 
+    });
+  }
+  try {
+    const result = await pool.query(`SELECT * FROM users WHERE identitycard = '${identitynumber}'`);
+    console.log(result.rows[0]);
+    const user = result.rows[0];
+    const isPasswordValid = await bcrypt.compare(password,user.password);
+    if(isPasswordValid){
+      res.json({status:true});
+    }else{
+      res.json({status:false})
+    }
+    
+  } catch (error){
+    console.log(error);
+    res.json({status: false});
+  }
+  
+  
+});
 
 app.post('/api/upload',upload.single('image'),async(req,res) => {
   console.log(req.file);
@@ -76,7 +131,7 @@ app.post('/api/upload',upload.single('image'),async(req,res) => {
   const  textOcr = await detectLabels(`uploads/${filename}`);
  
   res.json({message:`${textOcr}`});
-})
+});
 
 app.get("/", (req, res) => {
   res.json({ name: "Natchanan Lordee" });
