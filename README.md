@@ -1,9 +1,9 @@
 # MEDICINE-SCAN-APP-BACKEND 🌐📄💊
 
-## Description
+## Description 📝
 This backend service is developed using Node.js and Express to create APIs that interact with the mobile app 📱. The APIs manage requests related to medication label scanning 📄💊 and the Q&A functionality 🤖💬. The backend works with Google Vision API for OCR processing 👀, extracting data from medication labels, and a custom-trained LLM for answering pharmaceutical-related queries 🧠💊. This ensures that users get accurate, real-time information about their medications.
 
-## Features
+## Features 🛠️
 - Medication Label Scanning API 📄💊
     - Utilizes OCR technology to extract detailed information from medication labels, such as the drug name, ingredients, recommended dosage, and expiration date.
 - Pharmaceutical Q&A 🧠💬
@@ -18,7 +18,7 @@ This backend service is developed using Node.js and Express to create APIs that 
 - User Authentication API 🔐
     - Implements authentication systems to ensure secure management of medication data and user history.
 
-## Technologies Used
+## Technologies Used ⚙️
 - Node.js
 - Express.js
 - Google Vision API
@@ -27,8 +27,7 @@ This backend service is developed using Node.js and Express to create APIs that 
 - Git & GitHub
 - JSON Web Tokens
 
-## Screenshots
-## Author
+## Author ✍️
 - Deverlop 
     - Fontend Backend ana Database by Natchanan
     - Model and Database by Nonpawit
