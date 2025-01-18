@@ -104,12 +104,12 @@ app.post('/api/login', formUpload.none(), async (req,res) => {
     });
   }
   try {
-    const result = await pool.query(`SELECT * FROM users WHERE identitycard = '${identitynumber}'`);
+    const result = await pool.query(`SELECT * FROM users WHERE identitycard = $1`, [identitynumber]);
     console.log(result.rows[0]);
     const user = result.rows[0];
     const isPasswordValid = await bcrypt.compare(password,user.password);
     if(isPasswordValid){
-      res.json({status:true});
+      res.json({status:true,fullname:user.fullname});
     }else{
       res.json({status:false})
     }
