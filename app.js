@@ -18,7 +18,7 @@ const pool = new Pool({
 
 
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: "subtle-bus-443807-m7-320c0a0fc587.json",
+  keyFilename: "subtle-bus-443807-m7-30bc6e8c9240.json",
 });
 
 const storage = multer.diskStorage({
@@ -35,7 +35,7 @@ const formUpload = multer();
 
 async function detectLabels(imagePath) {
   try {
-    const [result] = await client.textDetection(imagePath); // ใส่ path ไฟล์รูปภาพที่ต้องการวิเคราะห์
+    const [result] = await client.textDetection(imagePath);
     const labels = result.textAnnotations;
 
     console.log("Labels detected:");
