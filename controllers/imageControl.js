@@ -17,7 +17,7 @@ exports.uploads = async(req, res) => {
     });
     try{
         const response = await axios.post(
-            "http://192.168.10.182:8080/api/generate-category",
+            "http://192.168.10.187:8080/api/generate-category",
             formData
         )
         data = response.data
