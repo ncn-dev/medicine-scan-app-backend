@@ -4,6 +4,7 @@ const multer = require("multer");
 const path = require("path")
 const { uploads } = require("../controllers/imageControl");
 
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, "uploads/");
