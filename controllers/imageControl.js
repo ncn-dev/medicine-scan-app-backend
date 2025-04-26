@@ -17,7 +17,7 @@ exports.uploads = async(req, res) => {
     });
     try{
         const response = await axios.post(
-            "https://29c3-2403-6200-8917-ece-de0-e754-4aea-f2d5.ngrok-free.app/api/generate-category",
+            "https://314b-2403-6200-8917-ece-de0-e754-4aea-f2d5.ngrok-free.app//api/generate-category",
             formData
         )
         data = response.data
