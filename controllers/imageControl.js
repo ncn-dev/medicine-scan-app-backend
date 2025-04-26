@@ -17,13 +17,13 @@ exports.uploads = async(req, res) => {
     });
     try{
         const response = await axios.post(
-            "http://192.168.10.118:8080/api/generate-category",
+            "https://29c3-2403-6200-8917-ece-de0-e754-4aea-f2d5.ngrok-free.app/api/generate-category",
             formData
         )
         data = response.data
         const result = await pool.query(
-            "INSERT INTO images(idcard, imagepath, patientname, patientid, medicinename, dose, form, registrationnumber, mfg, exp, warning, indication, usage, effect) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)",
-            [ "admin", filename, data.PatientName, data.PatientID, data.MedicineName, data.Dosage, data.Form, data.MedicineRegNo, data.MFG, data.EXP, data.Warning, data.Indication, data.Usage, data.Effect]
+            "INSERT INTO images(idcard, imagepath, medicinename, dose, form, warning, indication, usage) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
+            [ "admin", filename, data.drugname, data.dosage, data.form, data.warnings, data.indications, data.usage]
         )
         res.status(200).json(response.data);
         
