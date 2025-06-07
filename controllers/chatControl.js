@@ -3,7 +3,7 @@ let openai;
 async function initializeOpenAI() {
     const { OpenAI } = await import('openai');
     openai = new OpenAI({
-        apiKey: "",
+        apiKey: "key",
     });
 }
 
@@ -17,7 +17,7 @@ exports.chatbot = async (req, res) => {
     }
     const messages = [
         ...history,
-        { role: "user", content: `${text} ตอบมาแบบสั้นๆ` },
+        { role: "user", content: `${text} ` },
     ];
 
     try {
