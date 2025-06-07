@@ -12,7 +12,9 @@ exports.login = async (req, res) => {
             if(!isMatch){
                 return res.status(400).send("Password Incorrect");
             }else{
-                return res.status(200).send("Login Complete ")
+                // return res.status(200).json({ idcard: result.rows[0].idcard });
+
+                return res.status(200).json({ idcard: result.rows[0].idcard });
             }
         }
     } catch (err) {
@@ -31,7 +33,7 @@ exports.register = async (req, res) => {
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
             const result = await pool.query("INSERT INTO users(idcard, password, fullname, dateofbirth) VALUES($1, $2, $3, $4)", [idcard, hashedPassword, fullname, dateofbirth])
-            return res.status(200).send("Register Complete ")
+            return res.status(200).json({ idcard: idcard });
         }
     }catch(err){
         console.error(err);
